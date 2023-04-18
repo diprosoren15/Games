@@ -1,62 +1,66 @@
-import java.util.*;
-class game
-{
-    public int noOfGuesses=0;
-    public int number;
-    public int input;
-    
-    public int getnoOfGuesses()
-    {
-        return noOfGuesses;
-    }
-    public void setnoOfGuesses(int noOfGuesses)
-    {
-        this.noOfGuesses=noOfGuesses;
-    }
-    game()
-    {
-        Random r=new Random();
-        this.number=r.nextInt(50);
-    }
-    void UserInput()
-    {
-        System.out.println("Enter a number");
-        Scanner sc=new Scanner(System.in);
-        input=sc.nextInt();
-    }
-    Boolean isCorrectNumber()
-    {
-        noOfGuesses++;
-        if(input==number)
-        {
-            System.out.println("Congratulations You guessed it right");
-            System.out.println("No. of attempts = "+noOfGuesses);
-            return true;
-        }
-        
-        if(input>number)
-        {
-            System.out.println("Too long");
-        }
-        
-        else if(input<number)
-        {
-            System.out.println("Too Short");
-        }
-        return false;
-    }
-}
-public class GuessTheNumber
-{
-    public static void main(String[] args) {
-        game g=new game();
-        Boolean b= false;
-        while(!b)
-        {
-            g.UserInput();
-            b=g.isCorrectNumber();
-        }
-        
+import java.util.InputMismatchException;
+import java.util.Random;
+import java.util.Scanner;
 
-    }
+class Game {
+   static Scanner scanner = new Scanner(System.in);
+   static Random random = new Random();
+   public static int fromNum;
+   private static int tillNum;
+
+   Game(int from, int till) {
+      fromNum = from;
+      tillNum = till;
+   }
+
+   static int getInput() {
+      try {
+         System.out.println("Enter a number -");
+         int input = scanner.nextInt();
+         if (input >= fromNum && input <= tillNum)
+            return input;
+         return -1;
+      } catch (InputMismatchException e) {
+         return -1;
+      }
+   }
+
+   void run() {      
+      System.out.println("Welcome to Guess The Number game");
+      System.out.printf("Enter a value from %d to %d\n\n", fromNum, tillNum);
+
+      int rand = random.nextInt(fromNum, tillNum);
+      int tries = 0;
+
+      while (true) {
+         int input = getInput();
+         if (input == -1) {
+            System.out.println("Wrong Input! Try again");
+            continue;
+         }
+         tries++;
+         if (input > rand) {
+            System.out.println("Very High! Try again\n");
+            continue;
+         } else
+         if (input < rand) {
+            System.out.println("Very Low! Try again\n");
+            continue;
+         } else {
+            System.out.println("\nCongratulations! number matched");
+            break;
+         }
+      }
+      
+      System.out.println("You took " + tries + " tries.");
+   }   
+}
+
+public class GuessTheNumber {
+
+   public static void main(String[] args) {
+      Game guessTheNumber = new Game(1, 25);
+      guessTheNumber.run();
+   }
+
 }
