@@ -21,6 +21,7 @@ class Game {
             return input;
          return -1;
       } catch (InputMismatchException e) {
+         scanner.next();
          return -1;
       }
    }
@@ -34,11 +35,11 @@ class Game {
 
       while (true) {
          int input = getInput();
+         tries++;
          if (input == -1) {
             System.out.println("Wrong Input! Try again");
             continue;
          }
-         tries++;
          if (input > rand) {
             System.out.println("Very High! Try again\n");
             continue;
