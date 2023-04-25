@@ -1,11 +1,11 @@
+package GuessTheNumber;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
-
 class Game {
    static Scanner scanner = new Scanner(System.in);
    static Random random = new Random();
-   public static int fromNum;
+   private static int fromNum;
    private static int tillNum;
 
    Game(int from, int till) {
@@ -60,7 +60,7 @@ class Game {
 public class GuessTheNumber {
 
    public static void main(String[] args) {
-      Game guessTheNumber = new Game(1, 25);
+      Game guessTheNumber = new Game(1, 1000);
       guessTheNumber.run();
    }
 

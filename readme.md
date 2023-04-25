@@ -24,17 +24,3 @@
 
             - Find the winning sign
             - Compare the winning sign with the user sign and print user(won/lost)
-
-    \\ paper 
-    static hand_sign compare(hand sign a, hand sign b)
-    {
-        if(a == rock && b == paper) {
-            return hand_sign.paper;
-        }else
-        if(a == rock && b == scissor) {
-            return hand_sign.rock;
-        }else
-        if(a == paper && a == scissor) {
-            return hand_sign.scissor;
-        }
-    }
